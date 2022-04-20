@@ -1,19 +1,23 @@
 #pragma once
 #include <fstream>
+#include <cstring>
 using namespace std;
 class CropInfo{
     public:
         CropInfo();
+        ~CropInfo();
+        CropInfo(const CropInfo &other);
         void readFromFile(istream &file);
         void readFromUser();
         void print(ostream &out);
         bool codeIsBetween(double lowerBound, double upperBound);
+        void operator=(const CropInfo &other);
     private:
         enum {MAX_NAME_LEN = 60,
               NUM_YEARS = 19,
               START_YEAR = 2000};
         double cropCode;
-        char name[MAX_NAME_LEN];
-        double yieldsByYear[NUM_YEARS];
+        char *name;
+        double *yieldsByYear;
         
 };

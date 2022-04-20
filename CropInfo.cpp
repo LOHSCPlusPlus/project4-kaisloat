@@ -7,13 +7,41 @@ Clear all the values to zero.
 */
 CropInfo::CropInfo(){
     cropCode = 0;
+    name = new char[MAX_NAME_LEN];
     for (int index = 0; index < MAX_NAME_LEN; index++) {
         name[index] = '\0';
     }
+    yieldsByYear = new double[NUM_YEARS];
     for (int index = 0; index < NUM_YEARS; index++) {
         yieldsByYear[index] = 0;
     }
 }
+CropInfo::CropInfo(const CropInfo &other){
+  name = new char[MAX_NAME_LEN];
+  strcpy(name, other.name);
+  yieldsByYear = new double[NUM_YEARS];
+  for(int i = 0; i < NUM_YEARS; i++){
+    yieldsByYear[i] = other.yieldsByYear[i];
+  }
+}
+/**
+Deconstructor
+*/
+CropInfo::~CropInfo(){
+  delete[] name;
+  delete[] yieldsByYear;
+}
+/**
+Operator redefinition
+*/
+void CropInfo::operator=(const CropInfo &other){
+  strcpy(name, other.name);
+  for(int index = 0; index < NUM_YEARS; ++index){
+    yieldsByYear[index] = other.yieldsByYear[index];
+  }
+}
+
+
 /**
 Loads the information from the file specified
 */
