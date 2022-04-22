@@ -13,7 +13,7 @@ class CropInfo{
         bool codeIsBetween(double lowerBound, double upperBound);
         void operator=(const CropInfo &other);
     private:
-        enum {MAX_NAME_LEN = 60,
+        enum {
               NUM_YEARS = 19,
               START_YEAR = 2000};
         double cropCode;
